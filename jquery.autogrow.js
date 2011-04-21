@@ -1,6 +1,8 @@
 (function ($) {
-    $.fn.autogrow = function () {
-        this.filter('textarea').each(function () {
+    $.fn.autogrow = function (selector, offset) {
+    if (selector == undefined) selector = 'textarea';
+    if (offset == undefined) offset = 20;
+        this.filter(selector).each(function () {
             var $this = $(this),
                 minHeight = $this.height(),
                 shadow = $('<div></div>').css({
@@ -26,7 +28,7 @@
                         }
     
                         shadow.html(val);
-                        $(t).css('height', Math.max(shadow[0].offsetHeight + 20, minHeight));
+                        $(t).css('height', Math.max(shadow[0].offsetHeight + offset, minHeight));
                     }, 0);
                 };
 
